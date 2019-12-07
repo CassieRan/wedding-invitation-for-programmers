@@ -11,10 +11,10 @@
     <pre>
       <code v-html="highlightedCode"></code>
     </pre>
-    <Executions :canExecute="canExecute" @onUpdating="scrollToBottom" @onFinish="canOpen = true"/>
+    <Executions :canExecute="canExecute" @onUpdating="scrollToBottom" @onFinish="canClickOpen = canOpen = true;"/>
     <invitation :canOpen="canOpen" @sendBarrage="onAfterSending" @close="canOpen = false"/>
-    <Barrage :wish="wish" :canStart="canStart"/>
-    <div class="open-button" @click="canOpen = true" v-show="canOpen != true"></div>
+    <Barrage :canStart="canStart"/>
+    <div class="open-button" @click="canOpen = true" v-show="canOpen != true && canClickOpen"></div>
   </div>
 </template>
 
@@ -38,9 +38,10 @@
         currentCode: '',
         isCursorVisible: 1,
         canExecute: false,
-        canOpen: false,
+        canOpen: true,
         wish: '',
-        canStart: false
+        canStart: false,
+        canClickOpen: false
       }
     },
     async created() {
@@ -94,8 +95,7 @@
         })
       },
       // 发送弹幕之后
-      onAfterSending(wish) {
-        this.wish = wish
+      onAfterSending() {
         this.canOpen = false
         setTimeout(() => {
           this.canStart = true
@@ -151,7 +151,7 @@
     width: 100%;
     padding: 12px;
     overflow: hidden;
-    background: #2B2B48;
+    background: #151534;
     z-index: 3;
     >a{
       float: left;

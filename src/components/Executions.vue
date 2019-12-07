@@ -123,6 +123,10 @@
     .addon{
       color: #68FCFB;
     }
+    .code {
+      white-space: wrap;
+			word-break: break-all;
+    }
     .time{ color: #666; }
     .task{ color: #009AB2; }
     .duration{

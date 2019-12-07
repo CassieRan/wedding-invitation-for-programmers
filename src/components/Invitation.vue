@@ -7,25 +7,28 @@
             <div class="content-inside" v-if="current===-1" key="-1">
               <img class="content-inside-photo" src="../images/photo.jpg">
               <p><b>我们结婚啦！</b></p>
-              <p><b>MiMao & FaFa</b></p>
-              <p>时间：2020年<b>2月9日</b>上午11 星期天</p>
-              <p>地点：龙潭镇永兴街66号 <b>福音堂</b></p>
-              <input
-                class="content-inside-input"
-                placeholder="轻触写下祝福，按回车发送" 
-                @keyup.enter="sendBarrage"
-                @focus="isFocused = true"
-                @blur="isFocused = false, hasEntered = false"
-                v-model="wish"
-                ref="wishInput"
-              >
-              <p v-if="!wish && isFocused && hasEntered">请输入祝福哦</p>
-              <span class="prev" @click="back">返回</span>
+              <p class="name"><b><a href="https://extremej.itscoder.com/" target="_blank">全柟亿</a> & <a href="https://cassieran.github.io/about" target="_blank">冉桂华</a></b></p>
+              <p>时间：2020年<b>2月9日</b> 星期天</p>
+              <p>婚礼：龙潭镇永兴街66号 <b>福音堂 上午11时</b></p>
+              <p>酒宴：龙潭镇渝湘路 <b>恒都酒店 下午2时</b></p>
+              <div class="content-inside-wish">
+                <input
+                  class="content-inside-input"
+                  placeholder="轻触写下祝福" 
+                  @keyup.enter="loseFocus"
+                  @focus="isFocused = true"
+                  @blur="isFocused = false, hasEntered = false"
+                  v-model="wish"
+                  ref="wishInput"
+                >
+                <div class="content-inside-button" @click="sendBarrage">发送祝福</div>
+              </div>
+              <span class="prev" @click="back">看弹幕</span>
               <span class="next" @click="next">看照片</span>
             </div>
             <template v-else v-for="(item,index) in pictures">
                 <div class="content-inside" :key="index" v-if="current===index">
-                    <img :src="item">
+                    <img class="content-inside-photo" :src="item">
                     <span class="prev" @click="prev">上一个</span>
                     <span class="next" @click="next">下一个</span>
                 </div>
@@ -42,12 +45,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+import data from '../mock/data';
 export default {
   props: ['canOpen'],
   data() {
     return {
       isOpening: false,
-      wish: '',
+      wish: null,
       isFocused: false,
       hasEntered: false,
       current: -1,
@@ -63,22 +68,31 @@ export default {
       this.isOpening = true
     },
     // 发送弹幕
-    sendBarrage(){
-      this.$nextTick(() => {
+    async sendBarrage(){
         this.hasEntered = true
-        if (!this.wish) {
-          return
+        if (!this.wish) return
+        const res = await axios.post('/api/blessing', {
+            blessing: this.wish
+        })
+        this.wish = null
+        if(res.data.code === 0) {
+          alert('祝福收到啦，我们会仔细看的！')
         }
-        this.isOpening = false
-        this.$refs.wishInput.blur()
-        setTimeout(() => {
-          this.$emit('sendBarrage', this.wish)
-        }, 660)
-      })
+
+        // this.isOpening = false
+        
+        // setTimeout(() => {
+        //   this.$emit('sendBarrage', this.wish)
+        // }, 660)
+    },
+    loseFocus(){
+      this.$refs.wishInput.blur()
     },
     back() {
       this.isOpening = false
-      setTimeout(()=>this.$emit('close'),660)
+      setTimeout(() => {
+          this.$emit('sendBarrage')
+        }, 660)
     },
     prev() {
       this.current--
@@ -190,24 +204,46 @@ export default {
               padding: 5px;
               border: 1px solid #f7debb;
             }
+            .name{
+              a{
+                color:#a9895d !important;
+                // text-decoration: underline;
+                font-style: oblique;
+                border-bottom: 1px solid #a9895d;
+              }
+            }
             p{
               margin-top: 0;
               margin-bottom: 5px;
             }
-            .content-inside-input{
-              width: 100%;
-              height: 35px;
+            .content-inside-wish {
+              display: flex;
+              align-items: center;
               margin-top: 10px;
-              outline: none;
-              border: none;
-              border-bottom: 1px solid #f7debb;
-              color: #a9895d;
-              background: transparent;
-              &::-webkit-input-placeholder { color: #E8D1B1;font-size: 12px; }
-              &::-moz-placeholder { color: #E8D1B1;font-size: 12px; }
-              &:-ms-input-placeholder { color: #E8D1B1;font-size: 12px; }
-              &:-moz-placeholder { color: #E8D1B1;font-size: 12px; }
+              .content-inside-input{
+                flex: 1;                
+                height: 30px;
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #f7debb;
+                color: #a9895d;
+                background: transparent;
+                &::-webkit-input-placeholder { color: #E8D1B1;font-size: 12px; }
+                &::-moz-placeholder { color: #E8D1B1;font-size: 12px; }
+                &:-ms-input-placeholder { color: #E8D1B1;font-size: 12px; }
+                &:-moz-placeholder { color: #E8D1B1;font-size: 12px; }
+              }
+              .content-inside-button {
+                height: 30px;
+                line-height: 30px;
+                padding: 0 10px;
+                margin-left: 10px;
+                color: #a9895d;
+                background: #f7debb;
+                border-radius: 4px;
+              }
             }
+            
             .prev {
               position: absolute;
               left: 20px;

@@ -29,7 +29,7 @@ body{
   height: 100%;
   min-height: 100%;
   margin: 0 auto;
-  background: #2B2B48;
+  background: #151534;
   perspective: 500px;
 }
 </style>
