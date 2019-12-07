@@ -12,8 +12,9 @@
       <code v-html="highlightedCode"></code>
     </pre>
     <Executions :canExecute="canExecute" @onUpdating="scrollToBottom" @onFinish="canOpen = true"/>
-    <invitation :canOpen="canOpen" @sendBarrage="onAfterSending"/>
+    <invitation :canOpen="canOpen" @sendBarrage="onAfterSending" @close="canOpen = false"/>
     <Barrage :wish="wish" :canStart="canStart"/>
+    <div class="open-button" @click="canOpen = true" v-show="canOpen != true"></div>
   </div>
 </template>
 
@@ -42,9 +43,9 @@
         canStart: false
       }
     },
-    created() {
+    async created() {
       this.startDate = (new Date()).toDateString()
-      this.progressivelyTyping()
+      await this.progressivelyTyping()
     },
     updated() {
       this.scrollToBottom()
@@ -105,6 +106,29 @@
 </script>
 
 <style lang="less">
+@keyframes shine {
+  0%{
+    opacity: 0.3;
+    right: 25px;
+    bottom: 25px;
+    width: 30px;
+    height: 30px;
+  }
+  50% {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+  }
+  100%{
+    opacity: .3;
+    right: 25px;
+    bottom: 25px;
+    width: 30px;
+    height: 30px;
+  }
+}
 .wedding-editor{
   position: absolute;
   top: 0;
@@ -167,6 +191,20 @@
       font-weight: 500 !important;
       background: transparent;
     }
+  }
+  .open-button {
+    box-sizing: border-box;
+    animation: shine 2s ease infinite;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 5px solid #ffd69b;
+    color: #a9895d;
+    background: #FFF1DE;
+    z-index: 1000;
   }
 }
 </style>
