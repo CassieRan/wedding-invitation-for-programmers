@@ -13,6 +13,7 @@
                 top: '10px'
             }"
         >
+            <span v-if="wish" class="mine">{{wish}}</span>
             <span
                 v-for="(item, index) in filterBarrage(barrages, 0)"
                 :key="index"
@@ -69,7 +70,7 @@
 import axios from 'axios'
 
 export default {
-    props: ['canStart'],
+    props: ['canStart', 'wish'],
     data() {
         return {
             barrages: [],
@@ -82,11 +83,13 @@ export default {
             return `<style>${this.animationStyle}</style>`
         }
     },
+    async created() {
+        await this.gitWishes()
+    },
     watch: {
         async canStart(val) {
             if (val === true) {
-                await this.gitWishes()
-                this.barrageAnimationStart()
+                this.$nextTick(() => this.barrageAnimationStart())
             }
         }
     },

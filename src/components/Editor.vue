@@ -13,7 +13,7 @@
     </pre>
     <Executions :canExecute="canExecute" @onUpdating="scrollToBottom" @onFinish="canClickOpen = canOpen = true;"/>
     <invitation :canOpen="canOpen" @sendBarrage="onAfterSending" @close="canOpen = false"/>
-    <Barrage :canStart="canStart"/>
+    <Barrage :canStart="canStart" :wish="wish"/>
     <div class="open-button" @click="canOpen = true" v-show="canOpen != true && canClickOpen"></div>
   </div>
 </template>
@@ -41,7 +41,7 @@
         canOpen: false,
         wish: '',
         canStart: false,
-        canClickOpen: false
+        canClickOpen: true
       }
     },
     async created() {
@@ -95,8 +95,9 @@
         })
       },
       // 发送弹幕之后
-      onAfterSending() {
+      onAfterSending(wish) {
         this.canOpen = false
+        this.wish=wish
         setTimeout(() => {
           this.canStart = true
         }, 800)
@@ -192,19 +193,49 @@
       background: transparent;
     }
   }
+  // .open-button {
+  //   box-sizing: border-box;
+  //   animation: shine 2s ease infinite;
+  //   position: fixed;
+  //   right: 25px;
+  //   bottom: 25px;
+  //   width: 30px;
+  //   height: 30px;
+  //   border-radius: 50%;
+  //   border: 5px solid #ffd69b;
+  //   color: #a9895d;
+  //   background: #FFF1DE;
+  //   z-index: 1000;
+  // }
   .open-button {
-    box-sizing: border-box;
-    animation: shine 2s ease infinite;
+    z-index: 1000;
     position: fixed;
     right: 25px;
     bottom: 25px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 5px solid #ffd69b;
-    color: #a9895d;
-    background: #FFF1DE;
-    z-index: 1000;
-  }
+    text-align: center;
+    cursor: pointer;
+    background: #a9895d;
+    overflow: hidden;
+    animation-timing-function: ease-in-out;
+    animation-name: breathe;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes breathe {
+    0% {
+        opacity: .4;
+        box-shadow: 0 0 2px #FFF1DE, 0 0 1px #FFF1DE inset;
+    }
+
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 10px #FFF1DE, 0 0 10px #FFF1DE inset;
+    }
+}
 }
 </style>
