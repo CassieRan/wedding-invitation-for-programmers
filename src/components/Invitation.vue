@@ -52,6 +52,7 @@ export default {
   props: ['canOpen'],
   data() {
     return {
+      isSending: false,
       isOpening: false,
       wish: null,
       isFocused: false,
@@ -118,17 +119,20 @@ export default {
     },
     // 发送弹幕
     async sendBarrage(){
-        this.hasEntered = true
-        if (!this.wish) return
-        const res = await axios.post('/api/blessing', {
-            blessing: this.wish
-        })
-        this.$emit('sendBarrage', this.wish)
-        this.wish = null
+      if(this.isSending) return
+      this.isSending = true
+      this.hasEntered = true
+      if (!this.wish) return
+      const res = await axios.post('/api/blessing', {
+          blessing: this.wish
+      })
+      this.isSending = false
+      this.$emit('sendBarrage', this.wish)
+      this.wish = null
 
-        if(res.data.code === 0) {
-          alert('祝福收到啦，我们会仔细看的！')
-        }        
+      if(res.data.code === 0) {
+        alert('祝福收到啦，我们会仔细看的！')
+      }        
     },
     loseFocus(){
       this.$refs.wishInput.blur()
