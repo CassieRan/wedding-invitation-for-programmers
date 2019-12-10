@@ -96,7 +96,7 @@
       },
       // 发送弹幕之后
       onAfterSending(wish) {
-        this.canOpen = false
+        if(!wish) this.canOpen = false
         this.wish=wish
         setTimeout(() => {
           this.canStart = true
@@ -130,6 +130,7 @@
     padding: 12px;
     overflow: hidden;
     z-index: 3;
+    background-color: #151534;
     >a{
       float: left;
       display: block;

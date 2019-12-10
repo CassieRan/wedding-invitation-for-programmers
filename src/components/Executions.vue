@@ -34,7 +34,7 @@
         isFinished: false,
         progressBarText: '--------------------------',
         endExecution: {
-          name:'打开中...',
+          name:'启动中...',
           time: '',
           visible: false
         }
