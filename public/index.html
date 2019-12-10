@@ -9,12 +9,20 @@
     <link rel="stylesheet" href="<%= BASE_URL %>font-awesome.min.css">
   </head>
   <body>
-      <div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-          <div class="pace-progress-inner"></div>
-        </div>
-        <div class="pace-activity"></div></div>
-        <script data-pace-options='{ "ajax": false }' src="<%= BASE_URL %>pace/pace.min.js"></script>
-        <link href="<%= BASE_URL %>pace/pace-theme-loading-bar.css" rel="stylesheet">
+      <div class="pace pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+        <div class="pace-progress-inner"></div>
+      </div>
+      <div class="pace-activity"></div></div>
+      <script>
+          window.paceOptions = {
+              ajax: false, // disabled
+              document: true, 
+              eventLag: false, // disabled
+              elements: false
+          }
+      </script>
+      <script src="<%= BASE_URL %>pace/pace.min.js"></script>
+      <link href="<%= BASE_URL %>pace/pace-theme-loading-bar.css" rel="stylesheet">
     <noscript>
       <strong>Oh, something wrong with this site...</strong>
     </noscript>

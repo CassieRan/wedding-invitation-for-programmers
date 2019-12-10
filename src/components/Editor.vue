@@ -41,7 +41,7 @@
         canOpen: false,
         wish: '',
         canStart: false,
-        canClickOpen: true
+        canClickOpen: process.env.NODE_ENV === 'development'?true:false
       }
     },
     async created() {
@@ -115,6 +115,7 @@
   height: 100%;
   padding: 15px;
   padding-top: 50px;
+  background: #151534;
   overflow-x: hidden;
   overflow-y: auto;
   z-index: 1;

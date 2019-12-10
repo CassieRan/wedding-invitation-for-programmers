@@ -314,7 +314,7 @@ export default {
                 object-fit: cover;
               }
               .prev, .next {
-                color: #ffffff;
+                color: rgba(0,0,0,0.2);
                 font-weight: bold;
               }
             }

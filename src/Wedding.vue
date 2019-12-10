@@ -20,6 +20,6 @@
 html,
 body{
   height: 100%;
-  background-color: #151534;
+  background-color: #ffffff;
 }
 </style>
