@@ -1,5 +1,5 @@
 <template>
-  <div class="wedding-invitation" :class="{ 'invitation-bounce':canOpen }">
+  <div class="wedding-invitation" :class="{ 'invitation-bounce':canOpen }" :style="computedStyle">
     <div class="invitation-container" :class="{ 'invitation-down':isOpening }">
       <div class="invitation-cover">
         <div class="cover-content" :class="{'invitation-up':isOpening}">
@@ -56,11 +56,33 @@ export default {
       isFocused: false,
       hasEntered: false,
       current: -1,
-      pictures: [require('../images/pic_1.jpg'),require('../images/pic_2.jpg'),require('../images/pic_3.jpg')]
+      pictures: [require('../images/pic_1.jpg'),require('../images/pic_2.jpg'),require('../images/pic_3.jpg')],
     }
   },
   created() {
     this.preload()
+  },
+  computed: {
+    computedStyle() {
+      let width
+      let height
+        const standardWidth = 375
+        const standardHeight = 667
+        const standardRate = standardWidth/standardHeight
+        const deviceWidth = document.body.clientWidth //window.screen.availWidth
+        const deviceHeight = document.body.clientHeight
+        const rate = deviceWidth/deviceHeight
+          if(rate > standardRate){
+            height = deviceHeight
+            width = height * standardWidth/standardHeight
+          }else {
+            width = deviceWidth
+            height = width / (standardWidth/standardHeight)
+          }
+        console.log(deviceWidth,deviceHeight)
+
+        return `width: ${width}px;height: ${height}px;top:50%;left:50%;margin-top: -${height/2}px;margin-left: -${width/2}px;`
+    },
   },
   methods: {
     // 打开邀请函
@@ -129,13 +151,13 @@ export default {
   opacity: 0;
 }
   .wedding-invitation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 30px 20px;
-    padding-top: 60px;
+    padding: 60px 20px 30px;
     z-index: 4;
     transform: scale(0.05);
     -webkit-transform: scale(0.05);
@@ -143,7 +165,7 @@ export default {
     transition: transform 0.8s cubic-bezier(.26,1.84,.39,.61), opacity 0.5s linear;
     -webkit-transition: -webkit-transform 0.8s cubic-bezier(.26,1.84,.39,.61), opacity 0.5s linear;
     background-size: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     &.invitation-bounce{
       opacity: 1;
       transform: scale(1);
@@ -183,7 +205,7 @@ export default {
             -webkit-transform: translateY(-60px);
           }
           .content-inside{
-            backface-visibility:hidden;
+            // backface-visibility:hidden;
             position: absolute;
             top: 10px;
             left: 10px;
@@ -225,10 +247,10 @@ export default {
                 border-bottom: 1px solid #f7debb;
                 color: #a9895d;
                 background: transparent;
-                &::-webkit-input-placeholder { color: #E8D1B1;font-size: 12px; }
-                &::-moz-placeholder { color: #E8D1B1;font-size: 12px; }
-                &:-ms-input-placeholder { color: #E8D1B1;font-size: 12px; }
-                &:-moz-placeholder { color: #E8D1B1;font-size: 12px; }
+                &::-webkit-input-placeholder { color: #E8D1B1;font-size: 12px; } /* not convert */ 
+                &::-moz-placeholder { color: #E8D1B1;font-size: 12px; } /* not convert */ 
+                &:-ms-input-placeholder { color: #E8D1B1;font-size: 12px; } /* not convert */ 
+                &:-moz-placeholder { color: #E8D1B1;font-size: 12px; } /* not convert */ 
               }
               .content-inside-button {
                 height: 30px;

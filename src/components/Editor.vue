@@ -107,35 +107,11 @@
 </script>
 
 <style lang="less">
-@keyframes shine {
-  0%{
-    opacity: 0.3;
-    right: 25px;
-    bottom: 25px;
-    width: 30px;
-    height: 30px;
-  }
-  50% {
-    opacity: 1;
-    width: 40px;
-    height: 40px;
-    right: 20px;
-    bottom: 20px;
-  }
-  100%{
-    opacity: .3;
-    right: 25px;
-    bottom: 25px;
-    width: 30px;
-    height: 30px;
-  }
-}
 .wedding-editor{
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   padding: 15px;
   padding-top: 50px;
   overflow-x: hidden;
@@ -176,7 +152,7 @@
     line-height: 1.2;
     font-family: 'Roboto Mono', 'Menlo', 'Monaco', Courier, monospace !important;
     font-weight: 500 !important;
-    font-size: 16px!important;
+    font-size: 16px!important; /* not convert */ 
   }
   pre{
     margin: 0;
@@ -184,7 +160,7 @@
     code{
       white-space: pre-wrap;
       word-break: break-all;
-      font-size: 16px!important;
+      font-size: 16px!important; /* not convert */ 
       margin: 0;
       color: #BBB;
       line-height: 1.2;
@@ -210,10 +186,10 @@
   .open-button {
     z-index: 1000;
     position: fixed;
-    right: 25px;
-    bottom: 25px;
-    width: 30px;
-    height: 30px;
+    right: 25px; /* not convert */ 
+    bottom: 25px; /* not convert */ 
+    width: 44px; /* not convert */ 
+    height: 44px; /* not convert */ 
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
@@ -229,12 +205,12 @@
 @keyframes breathe {
     0% {
         opacity: .4;
-        box-shadow: 0 0 2px #FFF1DE, 0 0 1px #FFF1DE inset;
+        box-shadow: 0 0 2px #FFF1DE, 0 0 1px #FFF1DE inset; /* not convert */ 
     }
 
     100% {
         opacity: 1;
-        box-shadow: 0 0 10px #FFF1DE, 0 0 10px #FFF1DE inset;
+        box-shadow: 0 0 10px #FFF1DE, 0 0 10px #FFF1DE inset; /* not convert */ 
     }
 }
 }

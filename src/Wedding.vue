@@ -1,7 +1,5 @@
 <template>
-  <div class="wedding">
     <Editor/>
-  </div>
 </template>
 
 <script>
@@ -22,14 +20,7 @@
 html,
 body{
   height: 100%;
-}
-.wedding{
-  position: relative;
-  max-width: 568px!important;
-  height: 100%;
-  min-height: 100%;
-  margin: 0 auto;
-  background: #151534;
-  perspective: 500px;
+  overflow-y: scroll;
+  background-color: #151534;
 }
 </style>
