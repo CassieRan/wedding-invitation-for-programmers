@@ -20,7 +20,6 @@
 html,
 body{
   height: 100%;
-  overflow-y: scroll;
   background-color: #151534;
 }
 </style>

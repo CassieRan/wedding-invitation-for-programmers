@@ -64,7 +64,7 @@
     methods: {
       scrollToBottom() {
         // 保持页面一直滚到最下面
-        this.$refs.editor.scrollTop = 100000
+        this.$refs.editor.scrollTop = this.$refs.editor.scrollHeight
       },
       // 代码输入
       progressivelyTyping() {
@@ -112,6 +112,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   padding: 15px;
   padding-top: 50px;
   overflow-x: hidden;
@@ -128,7 +129,6 @@
     width: 100%;
     padding: 12px;
     overflow: hidden;
-    background: #151534;
     z-index: 3;
     >a{
       float: left;
