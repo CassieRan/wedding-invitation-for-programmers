@@ -80,10 +80,6 @@ export default {
       require('../images/pic_20.jpg'),
       require('../images/pic_21.jpg'),
       require('../images/pic_22.jpg'),
-      require('../images/pic_23.jpg'),
-      require('../images/pic_24.jpg'),
-      require('../images/pic_25.jpg'),
-      require('../images/pic_26.jpg'),
       ],
     }
   },
