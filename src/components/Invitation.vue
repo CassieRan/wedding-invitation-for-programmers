@@ -165,7 +165,7 @@ export default {
 <style lang="less">
 
 .turn-enter-active, .turn-leave-active {
-  transition: all 1s;
+  transition: all .7s;
 }
 
 .turn-enter-to, .turn-leave {

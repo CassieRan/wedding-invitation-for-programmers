@@ -96,8 +96,9 @@
       },
       // 发送弹幕之后
       onAfterSending(wish) {
+        if(wish) localStorage.setItem('wish', wish)
+        this.wish=localStorage.getItem('wish') || ''
         if(!wish) this.canOpen = false
-        this.wish=wish
         setTimeout(() => {
           this.canStart = true
         }, 800)
