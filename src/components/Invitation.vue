@@ -5,11 +5,11 @@
         <div class="cover-content" :class="{'invitation-up':isOpening}">
           <transition name="turn">
             <div class="content-inside" v-if="current===-1" key="-1">
-              <img class="content-inside-cover" src="../images/photo.jpg">
+              <div class="content-inside-cover"></div>
               <p><b>请来参加我们的婚礼吧！</b></p>
               <p class="name"><b><a href="https://extremej.itscoder.com/" target="_blank">全柟亿</a> & <a href="https://cassieran.github.io/about" target="_blank">冉桂华</a></b></p>
               <p><i class="fa fa-calendar" aria-hidden="true"></i> 时间：2020年<b>2月9日</b> 星期天</p>
-              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 婚礼：龙潭镇永兴街66号 <b>福音堂 上午11时</b></p>
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 婚礼：龙潭镇永兴街66号 <b>福音堂 上午12时</b></p>
               <p><i class="fa fa-map-marker" aria-hidden="true"></i> 酒宴：龙潭镇渝湘路 <b>恒都酒店 下午2时</b></p>
               <div class="content-inside-wish">
                 <input
@@ -23,8 +23,11 @@
                 >
                 <div class="content-inside-button" @click="sendBarrage">发送祝福</div>
               </div>
-              <span class="prev" @click="back"><i class="fa fa-eye" aria-hidden="true"></i> 看弹幕</span>
-              <span class="next" @click="next">看照片 <i class="fa fa-eye" aria-hidden="true"></i></span>
+              <div class="footer">
+                <span class="prev" @click="back"><i class="fa fa-eye" aria-hidden="true"></i> 看弹幕</span>
+                <span class="next" @click="next">看照片 <i class="fa fa-eye" aria-hidden="true"></i></span>
+              </div>
+              
             </div>
             <template v-else v-for="(item,index) in pictures">
                 <div class="content-inside photos" :key="index" v-if="current===index">
@@ -233,6 +236,8 @@ export default {
           }
           .content-inside{
             // backface-visibility:hidden;
+            display: flex;
+            flex-direction: column;
             position: absolute;
             top: 10px;
             left: 10px;
@@ -245,9 +250,9 @@ export default {
             text-align: center;
             overflow: auto;
             .content-inside-cover{
-              width: 100%;
-              margin-bottom: 20px;
-              border: 1px solid #f7debb;
+              flex: 1;
+              background: url(../images/photo.png) center -20px no-repeat;
+              background-size: contain;
             }
             .name{
               a{
@@ -260,6 +265,9 @@ export default {
             p{
               margin-top: 0;
               margin-bottom: 5px;
+            }
+            .footer {
+              height: 40px;
             }
             .content-inside-wish {
               display: flex;
