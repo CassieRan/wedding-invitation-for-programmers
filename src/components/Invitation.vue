@@ -251,7 +251,7 @@ export default {
             overflow: auto;
             .content-inside-cover{
               flex: 1;
-              background: url(../images/photo.png) center -20px no-repeat;
+              background: url(../images/photo.png) center -10px no-repeat;
               background-size: contain;
             }
             .name{
