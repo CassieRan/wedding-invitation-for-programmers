@@ -13,7 +13,7 @@ const { 👶, 👧 } = 🌎;
 👨‍💻.propose('嫁给我好吗？💍');
 👩‍💻.say('emmm...我考虑一下吧🤔');
 await(1000);
-👩‍💻.response('考虑好了！我愿意！💏');
+👩‍💻.response('我愿意！💏');
 Church.marry(🤵,👰);
 // 噢，是个爱情故事呢，程序开始运行啦`,
   executions: [{
