@@ -197,12 +197,35 @@
     text-align: center;
     cursor: pointer;
     background: #a9895d;
-    overflow: hidden;
-    animation-timing-function: ease-in-out;
-    animation-name: breathe;
-    animation-duration: 1500ms;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    // overflow: hidden;
+    // animation-timing-function: ease-in-out;
+    // animation-name: breathe;
+    // animation-duration: 1500ms;
+    // animation-iteration-count: infinite;
+    // animation-direction: alternate;
+    &::before {
+      z-index: 1000;
+      position: absolute;
+      top:0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 100%;
+      background: #a9895d;
+      border-radius: 50%;
+      animation: wave 2s ease-out infinite;
+    }
+}
+@keyframes wave {
+  50%,
+  75% {
+    transform: scale(2);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes breathe {
