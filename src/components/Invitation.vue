@@ -251,8 +251,9 @@ export default {
             overflow: auto;
             .content-inside-cover{
               flex: 1;
-              background: url(../images/photo.png) center -10px no-repeat;
+              background: url(../images/photo.png) center center no-repeat;
               background-size: contain;
+              margin-bottom: 20px;
             }
             .name{
               a{
