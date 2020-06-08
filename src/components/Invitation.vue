@@ -8,9 +8,8 @@
               <div class="content-inside-cover"></div>
               <p><b>请来参加我们的婚礼吧！</b></p>
               <p class="name"><b><a href="https://extremej.itscoder.com/" target="_blank">全柟亿</a> & <a href="https://cassieran.github.io/about" target="_blank">冉桂华</a></b></p>
-              <p><i class="fa fa-calendar" aria-hidden="true"></i> 时间：2020年<b>2月9日</b> 星期天</p>
-              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 婚礼：龙潭镇永兴街66号 <b>福音堂 上午12时</b></p>
-              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 酒宴：龙潭镇渝湘路 <b>恒都酒店 下午2时</b></p>
+              <p><i class="fa fa-calendar" aria-hidden="true"></i> 时间：2020年<b>6月21日</b> 星期天</p>
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 地点：南之山小森林(南山公园北路99号)</p>
               <div class="content-inside-wish">
                 <input
                   class="content-inside-input"
@@ -243,7 +242,7 @@ export default {
             left: 10px;
             width: calc(100% - 20px);
             height: calc(100% - 20px);
-            padding: 20px;
+            padding: 20px 15px;
             border-radius: 2px;
             color: #a9895d;
             background-color: #FFF1DE;
