@@ -8,8 +8,11 @@
               <div class="content-inside-cover"></div>
               <p><b>请来参加我们的婚礼吧！</b></p>
               <p class="name"><b><a href="https://extremej.itscoder.com/" target="_blank">全柟亿</a> & <a href="https://cassieran.github.io/about" target="_blank">冉桂华</a></b></p>
-              <p><i class="fa fa-calendar" aria-hidden="true"></i> 时间：2020年<b>6月21日</b> 星期天</p>
-              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 地点：南之山小森林(南山公园北路99号)</p>
+              <!-- <p><i class="fa fa-calendar" aria-hidden="true"></i> 时间：2020年<b>6月21日</b> 星期天</p>
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i> 地点：南之山小森林(南山公园北路99号)</p> -->
+              <p><i class="fa fa-calendar" aria-hidden="true"></i><span v-html="timeAndLocation.date"></span></p>
+              <!-- <p><i class="fa fa-calendar" aria-hidden="true"></i><span v-html="timeAndLocation.time"></span></p> -->
+              <p><i class="fa fa-map-marker" aria-hidden="true"></i><span v-html="timeAndLocation.location"></span></p>
               <div class="content-inside-wish">
                 <input
                   class="content-inside-input"
@@ -48,12 +51,12 @@
 
 <script>
 import axios from 'axios'
-import data from '../mock/data';
 
 export default {
   props: ['canOpen'],
   data() {
     return {
+      hash: location.hash,
       isSending: false,
       isOpening: false,
       wish: null,
@@ -89,6 +92,25 @@ export default {
     this.preload()
   },
   computed: {
+    timeAndLocation() {
+      switch(this.hash) {
+        case '#/fafa': return {
+          date: ' 时间：2020年<b>7月9日</b>(下午3时入席)',
+          time: ' 入席：下午3时',
+          location: ' 地点：龙潭镇渤海村五组燕子岩 冉爱军(宅)'
+        };
+        case '#/mimao': return {
+          date: ' 时间：2020年<b>7月10日</b>(下午2时入席)',
+          time: ' 入席：下午2时',
+          location: ' 地点：金都酒店(龙潭镇渝湘路1001号)'
+        };
+        default: return {
+          date: ' 时间：2020年<b>7月10日</b>(下午2时入席)',
+          time: ' 入席：下午2时',
+          location: ' 地点：金都酒店(龙潭镇渝湘路1001号)'
+        };
+      }
+    },
     computedStyle() {
       let width
       let height
@@ -105,7 +127,6 @@ export default {
             width = deviceWidth
             height = width / (standardWidth/standardHeight)
           }
-        console.log(deviceWidth,deviceHeight)
 
         return `width: ${width}px;height: ${height}px;top:50%;left:50%;margin-top: -${height/2}px;margin-left: -${width/2}px;`
     },
@@ -155,7 +176,7 @@ export default {
         image.src = img
         image.onload = () => {
           count++
-          if(count >= this.pictures.length) console.log('加载完啦！')
+          if(count >= this.pictures.length) console.log('图片加载完啦！')
         }
       }
 
